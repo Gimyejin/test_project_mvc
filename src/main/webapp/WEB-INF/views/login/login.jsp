@@ -12,7 +12,7 @@
 <c:import url="../default/header.jsp"/>
 <div class="wrap" style="text-align: right; margin-top: 20px;">
 		<c:choose>
-			<c:when test="${userid == null }">
+			<c:when test="${sessionScope.id == null }">
 				<form action="loginChk" method="post">
 					<input type="text" name="id" placeholder="input id"><br>
 					<input type="password" name="pwd" placeholder="input password"><br>
@@ -21,7 +21,7 @@
 				</form>
 			</c:when>
 			<c:otherwise>
-				${userid} 님 환영합니다 <br>
+				${name} 님 환영합니다 <br>
 				<a href="main">home으로</a>
 			</c:otherwise>
 		</c:choose>

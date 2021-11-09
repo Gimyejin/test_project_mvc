@@ -82,17 +82,15 @@ nav ul li a:hover {
 				<ul>
 	<li><a href="main">HOME</a></li>
 	<li><a href="membership">MEMBER_SHIP</a></li>
-	<li>
 		<c:choose>
-			<c:when test="${loginUser == null }">
-				<a href="login">LOGIN</a>
+			<c:when test="${sessionScope.id == null }">
+				<li><a href="login">LOGIN</a></li>
 			</c:when>
 			<c:otherwise>
-				<a href="logout">LOGOUT</a>
+			 	<li><a href="mypage">MY Page</a></li>
+				<li><a href="logout">LOGOUT</a></li>
 			</c:otherwise>
 		</c:choose>
-		
-	</li>
 				</ul>
 			</nav>
 		</div>
