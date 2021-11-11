@@ -12,7 +12,7 @@
 <c:import url="../default/header.jsp"/>
 <div class="wrap" style="text-align: right; margin-top: 20px;">
 		<c:choose>
-			<c:when test="${sessionScope.id == null }">
+			<c:when test="${loginUser == null }">
 				<form action="loginChk" method="post">
 					<input type="text" name="id" placeholder="input id"><br>
 					<input type="password" name="pwd" placeholder="input password"><br>

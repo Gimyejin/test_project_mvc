@@ -8,7 +8,7 @@ import com.care.root.main.memberDTO.MemberDTO;
 
 public interface MainService {
 
-	void insert(MemberDTO dto);
+	int insert(MemberDTO dto);
 
 	void list(Model model);
 

@@ -83,7 +83,7 @@ nav ul li a:hover {
 	<li><a href="main">HOME</a></li>
 	<li><a href="membership">MEMBER_SHIP</a></li>
 		<c:choose>
-			<c:when test="${sessionScope.id == null }">
+			<c:when test="${loginUser == null }">
 				<li><a href="login">LOGIN</a></li>
 			</c:when>
 			<c:otherwise>
