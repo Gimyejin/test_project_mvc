@@ -1,5 +1,9 @@
 package com.care.root.main.mainService;
 
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +60,16 @@ public class MainServiceImpl implements MainService {
 			return null;
 		}
 
+	}
+
+	@Override
+	public void keepLogin(String sessionId, Date limDate, String id) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("sessionId", sessionId);
+		map.put("limDate", limDate);
+		map.put("id", id);
+		dao.keepLogin(map);
+		
 	}
 
 }

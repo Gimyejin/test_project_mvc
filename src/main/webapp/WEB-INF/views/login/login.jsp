@@ -18,6 +18,7 @@
 					<input type="password" name="pwd" placeholder="input password"><br>
 					<input type="submit" value="로그인"> 
 					<a href="insert">회원가입</a>
+					<input type="checkbox" name="autologin">로그인 유지
 				</form>
 			</c:when>
 			<c:otherwise>

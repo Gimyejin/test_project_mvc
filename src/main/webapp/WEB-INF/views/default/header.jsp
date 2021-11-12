@@ -80,15 +80,17 @@ nav ul li a:hover {
 		<div class="wrap">
 			<nav>
 				<ul>
-	<li><a href="main">HOME</a></li>
-	<li><a href="membership">MEMBER_SHIP</a></li>
+	<li><a href="${contextPath }/main">HOME</a></li>
+	<li><a href="${contextPath }/membership">MEMBER_SHIP</a></li>
+	<li><a href="${contextPath }/test/board">TEST_BOARD</a></li>
+	<%-- <li><a href="${contextPath }/test/write">write</a></li> --%>
 		<c:choose>
 			<c:when test="${loginUser == null }">
-				<li><a href="login">LOGIN</a></li>
+				<li><a href="${contextPath }/login">LOGIN</a></li>
 			</c:when>
 			<c:otherwise>
-			 	<li><a href="mypage">MY Page</a></li>
-				<li><a href="logout">LOGOUT</a></li>
+			 	<li><a href="${contextPath }/mypage">MY Page</a></li>
+				<li><a href="${contextPath }/logout">LOGOUT</a></li>
 			</c:otherwise>
 		</c:choose>
 				</ul>

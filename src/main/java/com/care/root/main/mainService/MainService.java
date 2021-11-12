@@ -1,5 +1,7 @@
 package com.care.root.main.mainService;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
@@ -13,6 +15,8 @@ public interface MainService {
 	void list(Model model);
 
 	MemberDTO chk(String id, String pwd,HttpSession session);
+
+	void keepLogin(String id, Date limDate, String id2);
 
 
 }

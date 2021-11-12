@@ -1,6 +1,11 @@
 package com.care.root.main.mainController;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.care.root.common.MemberSessionName;
 import com.care.root.main.mainService.MainService;
@@ -58,13 +64,33 @@ public class MainController implements MemberSessionName {
 	}
 
 	@GetMapping("login")
-	public String getLogin() {
+	public String getLogin(@RequestParam(required=false) String autologin,
+			HttpSession session,HttpServletResponse response) {
+		String id =(String) session.getAttribute(LOGIN);
+		System.out.println("autologin "+autologin);
+		if(autologin != null) {
+			int limitTime = 60*60*24*90;//90일
+			Cookie loginCookie = new Cookie("loginCookie",session.getId());
+			//session.getId()는 거의 유일한 값임 -> F12에 application의 value값임
+			//sql의 session_id 는 value값을 저장함
+			loginCookie.setPath("/");
+			loginCookie.setMaxAge(limitTime);
+			response.addCookie(loginCookie);
+			
+			Calendar cal = Calendar.getInstance();//이걸 써야 시간이 제대로 들어가짐
+			cal.setTime(new Date());//유틸의 date
+			cal.add(Calendar.MONTH, 3);//현재시간에서 3개월 후가 저장
+			
+			java.sql.Date limDate = new java.sql.Date(cal.getTimeInMillis());
+			//->3개월 설정 성공
+			ms.keepLogin(session.getId(),limDate,id);
+		}
 		return "login/login";
 	}
 
 	@PostMapping("loginChk")
-	public String idChk(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd,
-			HttpSession session, MemberDTO dto) {
+	public String idChk(Model model, @RequestParam("id") String id, @RequestParam("pwd") String pwd,@RequestParam(required=false) String autologin,
+			HttpSession session, MemberDTO dto,RedirectAttributes rs) {
 		dto = ms.chk(id, pwd, session);
 		if (dto != null) {
 			System.out.println(dto.getName());
@@ -72,6 +98,8 @@ public class MainController implements MemberSessionName {
 			session.setAttribute("pwd", dto.getPwd());
 			session.setAttribute("name", dto.getName());
 			session.setAttribute("addr", dto.getAddr());
+			
+			rs.addAttribute("autologin", autologin);
 			return "redirect:login";
 		} else {
 			return "redirect:login";

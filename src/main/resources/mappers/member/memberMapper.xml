@@ -9,6 +9,8 @@
 		<result property="pwd" column="pwd"/>
 		<result property="name" column="name"/>
 		<result property="addr" column="addr"/>
+		<result property="limDate" column="limit_time"/>
+		<result property="sessionId" column="session_id"/>
 	</resultMap>
 	<insert id="insert">
 		insert into jsp_member values(#{id},#{pwd},#{name},#{addr})
@@ -19,4 +21,8 @@
 	<select id="selectId" resultMap="member">
 		select * from jsp_member where id = #{id}
 	</select>
+	<update id="keepLogin">
+		update jsp_member set session_id=#{sessionId},
+				limit_time=#{limDate} where id=#{id}
+	</update>
 </mapper>

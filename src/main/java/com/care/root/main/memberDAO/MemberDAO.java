@@ -1,6 +1,7 @@
 package com.care.root.main.memberDAO;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.care.root.main.memberDTO.MemberDTO;
 
@@ -11,5 +12,7 @@ public interface MemberDAO {
 	public ArrayList<MemberDTO> list();
 
 	public MemberDTO selectId(String id);
+
+	public void keepLogin(Map<String, Object> map);
 
 }
