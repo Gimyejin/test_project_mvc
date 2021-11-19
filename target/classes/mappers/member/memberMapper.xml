@@ -13,7 +13,7 @@
 		<result property="sessionId" column="session_id"/>
 	</resultMap>
 	<insert id="insert">
-		insert into jsp_member values(#{id},#{pwd},#{name},#{addr})
+		insert into jsp_member(id,pwd,name,addr) values(#{id},#{pwd},#{name},#{addr})
 	</insert>
 	<select id="list" resultMap="member">
 		select * from jsp_member
@@ -25,4 +25,7 @@
 		update jsp_member set session_id=#{sessionId},
 				limit_time=#{limDate} where id=#{id}
 	</update>
+	<select id="getUserSessionId" resultMap="member">
+		select * from jsp_member where session_id = #{sessionId}
+	</select>
 </mapper>

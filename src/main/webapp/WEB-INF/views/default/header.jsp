@@ -82,7 +82,8 @@ nav ul li a:hover {
 				<ul>
 	<li><a href="${contextPath }/main">HOME</a></li>
 	<li><a href="${contextPath }/membership">MEMBER_SHIP</a></li>
-	<li><a href="${contextPath }/test/board">TEST_BOARD</a></li>
+	<li><a href="${contextPath }/board/boardAllList">BoardAllList</a></li>
+	<%-- <li><a href="${contextPath }/test/board">TEST_BOARD</a></li> --%>
 	<%-- <li><a href="${contextPath }/test/write">write</a></li> --%>
 		<c:choose>
 			<c:when test="${loginUser == null }">

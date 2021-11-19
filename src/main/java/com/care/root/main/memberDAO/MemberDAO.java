@@ -15,4 +15,6 @@ public interface MemberDAO {
 
 	public void keepLogin(Map<String, Object> map);
 
+	public MemberDTO getUserSessionId(String sessionId);
+
 }

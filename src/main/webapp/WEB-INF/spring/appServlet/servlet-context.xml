@@ -25,12 +25,18 @@
 	
 	<beans:bean id = "memberInterceptor" class = "com.care.root.member.interceptor.MemberInterceptor"/>
 	<beans:bean id = "bti" class = "com.care.root.testboard.BoardTestInterceptor"/>
+	<beans:bean id = "autoLogin" class = "com.care.root.member.interceptor.AutoLoginInterceptor"/>
 	<interceptors>
+		<interceptor>
+			<mapping path="/main"/>
+			<beans:ref bean="autoLogin"/>
+		</interceptor>
 		<interceptor>
 			<!-- <mapping path="/main" /> -->
 			<mapping path="/membership"/>
 			<mapping path="/test/board"/>
-			<!-- 같은 코드를 사용하고 있으니 mapping으로만 추가해주면 똑같이 동작함 -->
+			<mapping path="/board/writeForm"/>
+			<!--bti든 memberInterceptor든 지금 같은 코드를 사용하고 있으니 mapping으로만 추가해주면 똑같이 동작함 -->
 			<beans:ref bean="memberInterceptor" />
 		</interceptor>
 		<!-- 다른사람과 협업할때 이렇게 사용하면 된다는 것 -->
@@ -39,5 +45,11 @@
 			<mapping path="/test/write"/>
 			<beans:ref bean="bti" />
 		</interceptor> -->
+		
+		<!-- <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+                <beans:property name="maxUploadSize" value="52428800"/>
+                <beans:property name="defaultEncoding" value="utf-8"/>
+        </beans:bean>  -->
+		
 	</interceptors>
 </beans:beans>

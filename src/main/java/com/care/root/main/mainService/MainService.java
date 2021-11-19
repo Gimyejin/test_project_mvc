@@ -18,5 +18,7 @@ public interface MainService {
 
 	void keepLogin(String id, Date limDate, String id2);
 
+	MemberDTO getUserSessionId(String sessionId);
+
 
 }

@@ -72,4 +72,9 @@ public class MainServiceImpl implements MainService {
 		
 	}
 
+	@Override
+	public MemberDTO getUserSessionId(String sessionId) {
+		return dao.getUserSessionId(sessionId);
+	}
+
 }
